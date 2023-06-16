@@ -1,4 +1,19 @@
 const Product = require("../models/product");
+// Swell integration
+const swell = require("swell-node");
+swell.init("bisket-store", "bR5f3HvABxGjqX9gIZ8UAwnnSSVhrTMx");
+
+// get products from swell
+exports.getProductsFromSwell = async () => {
+  try {
+    const products = await swell.get("/products");
+    // const products = await swell.get("/products");
+    return products.results;
+  } catch (err) {
+    console.error("Error getting products", error);
+    throw new Error("Failed to get products");
+  }
+};
 
 // Create a new product
 exports.createProduct = async (productData) => {

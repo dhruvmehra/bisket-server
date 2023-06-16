@@ -27,4 +27,16 @@ exports.getCurationById = async (curationId) => {
   }
 };
 
-// Add more curation service methods as needed
+// Get a curation by curationId
+exports.getCurationById = async (curationId) => {
+  try {
+    const curation = await Curation.findOne({ curationId: curationId });
+    if (!curation) {
+      throw new Error("Curation not found");
+    }
+    return curation;
+  } catch (error) {
+    console.error("Error getting curation:", error);
+    throw new Error("Failed to get curation");
+  }
+};

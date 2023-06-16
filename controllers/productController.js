@@ -30,6 +30,17 @@ exports.getProduct = async (req, res) => {
   }
 };
 
+// Get a single product by ID
+exports.getProductList = async (req, res) => {
+  try {
+    const product = await productService.getProductsFromSwell();
+    res.json(product);
+  } catch (error) {
+    console.error("Error getting product:", error);
+    res.status(500).json({ message: "Failed to get product" });
+  }
+};
+
 // Update a product
 exports.updateProduct = async (req, res) => {
   try {

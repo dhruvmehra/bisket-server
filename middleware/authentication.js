@@ -11,6 +11,11 @@ admin.initializeApp({
 const authenticateUser = (req, res, next) => {
   // Get the token from the request headers
   // Just extract the token number from the JWT
+
+  if (!req.headers.authorization) {
+    throw new Error("Access denied. Missing token.");
+  }
+
   const token = req.headers.authorization.split(" ")[1];
 
   if (!token) {
