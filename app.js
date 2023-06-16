@@ -14,6 +14,7 @@ const connect = require("./config/db.config");
 // Routers
 var indexRouter = require("./routes/indexRoutes");
 var userRouter = require("./routes/userRoutes");
+var likesRouter = require("./routes/likesRoutes");
 var productRouter = require("./routes/productRoutes");
 // var curationRouter = require("./routes/curationRoutes");
 // var feedRouter = require("./routes/feedRoutes");
@@ -41,6 +42,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", userRouter);
 app.use("/products", authenticateUser, productRouter);
+app.use("/likes", likesRouter);
 // app.use("/curations", curationRouter);
 
 // catch 404 and forward to error handler
