@@ -7,7 +7,7 @@ exports.getLikes = async () => {
     const likes = await Like.find();
     // console.log(likes);
     likes.forEach((item) => {
-      console.log(item.public_id, item.likes); // Check the values of public_id and likes
+      // console.log(item.public_id, item.likes); // Check the values of public_id and likes
       likes_map[item.public_id] = parseFloat(item.likes);
     });
 
