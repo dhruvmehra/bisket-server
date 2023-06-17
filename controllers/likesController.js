@@ -1,6 +1,7 @@
 require("dotenv").config();
 const likesService = require("../service/likesService");
 const cloudinary = require("cloudinary").v2;
+const Like = require("../models/like");
 
 // Initialize Cloudinary with your credentials
 cloudinary.config({
@@ -32,6 +33,14 @@ exports.incrementLikes = async (req, res) => {
 };
 
 exports.resetLikesForAllImages = async (req, res, next) => {
+  //delete old
+  try {
+    await Like.collection.drop();
+    console.log("Like collection deleted successfully");
+  } catch (error) {
+    console.error("Error deleting like collection:", error);
+  }
+  // create new
   try {
     const images = await getImagesFromCloudinary(); // Implement the logic to fetch all images from Cloudinary
 

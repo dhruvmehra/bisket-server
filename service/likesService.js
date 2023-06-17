@@ -3,8 +3,15 @@ const Like = require("../models/like");
 // Like service methods
 exports.getLikes = async () => {
   try {
+    const likes_map = {};
     const likes = await Like.find();
-    return likes;
+    // console.log(likes);
+    likes.forEach((item) => {
+      console.log(item.public_id, item.likes); // Check the values of public_id and likes
+      likes_map[item.public_id] = parseFloat(item.likes);
+    });
+
+    return likes_map;
   } catch (error) {
     console.error("Error getting likes:", error);
     throw new Error("Failed to get likes");
