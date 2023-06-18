@@ -20,7 +20,7 @@ exports.createUser = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.query;
     const user = await userService.getUserById(id);
     res.json(user);
   } catch (error) {
@@ -31,7 +31,8 @@ exports.getUser = async (req, res) => {
 
 exports.getUserByEmail = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email } = req.query;
+    console.log("received email -->", email);
     const user = await userService.getUserByEmailId(email);
     res.json(user);
   } catch (error) {
